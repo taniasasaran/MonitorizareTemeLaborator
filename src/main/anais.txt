@@ -1,0 +1,18 @@
+Tema: 15
+Nota: 10.0
+Predata in saptamana: 8
+Deadline: 8
+Feedback: foarte buna bravo anisio
+
+Tema: 1
+Nota: 7.0
+Predata in saptamana: 7
+Deadline: 7
+Feedback: cam naspa ce sa mai si zic
+
+Tema: 2
+Nota: 9.0
+Predata in saptamana: 8
+Deadline: 8
+Feedback: ff buna bravo
+
