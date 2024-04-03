@@ -1,15 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entitati>
-    <student ID="2">
-        <Nume>Maria</Nume>
-        <Grupa>222</Grupa>
-    </student>
-    <student ID="3">
-        <Nume>Ana</Nume>
-        <Grupa>936</Grupa>
-    </student>
-    <student ID="15">
-        <Nume>anais</Nume>
-        <Grupa>921</Grupa>
-    </student>
 </Entitati>
