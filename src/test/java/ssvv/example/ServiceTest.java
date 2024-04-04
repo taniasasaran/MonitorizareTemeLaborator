@@ -15,6 +15,10 @@ import ssvv.example.validation.StudentValidator;
 import ssvv.example.validation.TemaValidator;
 import ssvv.example.validation.Validator;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class ServiceTest {
 
     static Service service;
@@ -39,7 +43,9 @@ public class ServiceTest {
     static void tearDown() {
         // delete all students
         Iterable<Student> students = service.findAllStudents();
-        for (Student student : students) {
+        List<Student> studentList = new ArrayList<>();
+        students.forEach(studentList::add);
+        for (Student student : studentList) {
             service.deleteStudent(student.getID());
         }
     }
