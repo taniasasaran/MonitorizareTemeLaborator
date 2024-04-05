@@ -42,6 +42,10 @@ public class AppTest
         for (Student student : students) {
             service.deleteStudent(student.getID());
         }
+        Iterable<Tema> teme = service.findAllTeme();
+        for (Tema tema : teme) {
+            service.deleteTema(tema.getID());
+        }
     }
 
     @After
@@ -52,6 +56,14 @@ public class AppTest
         students.forEach(studentList::add);
         for (Student student : studentList) {
             service.deleteStudent(student.getID());
+        }
+
+        // delete all assignments
+        Iterable<Tema> teme = service.findAllTeme();
+        List<Tema> temaList = new ArrayList<>();
+        teme.forEach(temaList::add);
+        for (Tema tema : temaList) {
+            service.deleteTema(tema.getID());
         }
     }
 
@@ -138,5 +150,20 @@ public class AppTest
         int result = service.saveStudent("2", "Sorana", 938);
 
         assert result == 1;
+    }
+
+    // add assignment tests
+    @Test
+    public void testAddAssignmentPath12345() {
+        int result = service.saveTema("1", "Tema1", 5, 3);
+
+        assert result == 1;
+    }
+
+    @Test
+    public void testAddAssignmentPath12346() {
+        int result = service.saveTema("2", "Tema2", 4, 6);
+
+        assert result == 0;
     }
 }
