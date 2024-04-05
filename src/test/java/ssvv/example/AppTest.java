@@ -166,4 +166,32 @@ public class AppTest
 
         assert result == 0;
     }
+
+    @Test
+    public void testAddAssignmentPath12346_2() {
+        int result = service.saveTema("", "Tema3", 2, 3);
+
+        assert result == 0;
+    }
+
+    @Test
+    public void testAddAssignmentPath12346_3() {
+        int result = service.saveTema("3", "", 2, 3);
+
+        assert result == 0;
+    }
+
+    @Test
+    public void testAddAssignmentPath12346_4() {
+        int result = service.saveTema("4", "Tema4", 0, 3);
+
+        assert result == 0;
+    }
+
+    @Test
+    public void testAddAssignmentPath12346_5() {
+        int result = service.saveTema("5", "Tema5", 2, 17);
+
+        assert result == 0;
+    }
 }
