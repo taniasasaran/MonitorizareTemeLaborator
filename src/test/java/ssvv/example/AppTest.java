@@ -1,9 +1,9 @@
 package ssvv.example;
 
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import ssvv.example.domain.Nota;
 import ssvv.example.domain.Student;
 import ssvv.example.domain.Tema;
@@ -24,11 +24,11 @@ import java.util.List;
  */
 public class AppTest
 {
-    static Service service;
+    Service service;
 
 
-    @BeforeAll
-    static void beforeAll() {
+    @Before
+    public void beforeAll() {
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
@@ -44,8 +44,8 @@ public class AppTest
         }
     }
 
-    @AfterAll
-    static void afterAll() {
+    @After
+    public void afterAll() {
         // delete all students
         Iterable<Student> students = service.findAllStudents();
         List<Student> studentList = new ArrayList<>();
