@@ -9,7 +9,7 @@ public class StudentValidator implements Validator<Student> {
         if (student.getNume() == null || student.getNume().equals("")) {
             throw new ValidationException("Nume invalid! \n");
         }
-        if (student.getGrupa() <= 110 || student.getGrupa() >= 938) {
+        if (!String.valueOf(student.getGrupa()).matches("^[1-9][1-3][1-7]$")) {
             throw new ValidationException("Grupa invalida! \n");
         }
     }

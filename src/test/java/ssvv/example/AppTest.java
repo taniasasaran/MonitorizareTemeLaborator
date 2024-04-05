@@ -97,6 +97,13 @@ public class AppTest
         assert result == 1;
     }
 
+    @Test
+    public void testAddStudentInvalidGroup2() {
+        int result = service.saveStudent("23", "Oana", 209);
+
+        assert result == 1;
+    }
+
     //    BVA TESTS
     @Test
     public void testAddStudentValidGroupBVA1() {
