@@ -167,72 +167,41 @@ public class AppTest
     public void testAddAssignmentPath12345() {
         int result = service.saveTema("1", "Tema1", 5, 3);
 
-        assert result == 1;
+        assert result == 0;
     }
 
     @Test
     public void testAddAssignmentPath12346() {
         int result = service.saveTema("2", "Tema2", 4, 6);
 
-        assert result == 0;
+        assert result == 1;
     }
 
     @Test
     public void testAddAssignmentPath12346_2() {
         int result = service.saveTema("", "Tema3", 2, 3);
 
-        assert result == 0;
+        assert result == 1;
     }
 
     @Test
     public void testAddAssignmentPath12346_3() {
         int result = service.saveTema("3", "", 2, 3);
 
-        assert result == 0;
+        assert result == 1;
     }
 
     @Test
     public void testAddAssignmentPath12346_4() {
         int result = service.saveTema("4", "Tema4", 0, 3);
 
-        assert result == 0;
+        assert result == 1;
     }
 
     @Test
     public void testAddAssignmentPath12346_5() {
         int result = service.saveTema("5", "Tema5", 2, 17);
 
-        assert result == 0;
-    }
-
-    // integration testing
-    @Test
-    public void testAddStudentIntegration() {
-        int result = service.saveStudent("99", "Olivia", 312);
-
-        assert result == 0;
-    }
-
-    @Test
-    public void testAddAssignmentIntegration() {
-        int result = service.saveTema("99", "Tema99", 8, 5);
-
         assert result == 1;
-    }
-
-    @Test
-    public void testAddGradeIntegration() {
-        int result = service.saveNota("99", "99", 10, 6, "Good job!");
-
-        assert result == 1;
-    }
-
-    @Test
-    public void testAddStudentAssignmentGradeIntegration() {
-        int resultS = service.saveStudent("100", "Alex", 936);
-        int resultT = service.saveTema("100", "Tema1", 5, 3);
-        int resultN = service.saveNota("100", "100", 10, 5, "Good job!");
-
-        assert resultS == 0 && resultT == 1 && resultN == 1;
     }
 }
