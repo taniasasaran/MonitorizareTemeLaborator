@@ -53,7 +53,7 @@ public class Service {
 
             if (predata - deadline > 2) {
                 valNota =  1;
-            } else {
+            } else if (predata - deadline > 0) {
                 valNota =  valNota - 2.5 * (predata - deadline);
             }
             Nota nota = new Nota(new Pair(idStudent, idTema), valNota, predata, feedback);
@@ -77,6 +77,15 @@ public class Service {
 
     public int deleteTema(String id) {
         Tema result = temaXmlRepo.delete(id);
+
+        if (result == null) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int deleteNota(String idStudent, String idTema) {
+        Nota result = notaXmlRepo.delete(new Pair(idStudent, idTema));
 
         if (result == null) {
             return 0;

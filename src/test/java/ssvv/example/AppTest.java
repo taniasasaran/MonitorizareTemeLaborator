@@ -1,9 +1,7 @@
 package ssvv.example;
 
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import ssvv.example.domain.Nota;
 import ssvv.example.domain.Student;
 import ssvv.example.domain.Tema;
@@ -24,11 +22,11 @@ import java.util.List;
  */
 public class AppTest
 {
-    Service service;
+    static Service service;
 
 
-    @Before
-    public void beforeAll() {
+    @BeforeClass
+    public static void beforeAll() {
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
@@ -46,10 +44,14 @@ public class AppTest
         for (Tema tema : teme) {
             service.deleteTema(tema.getID());
         }
+        Iterable<Nota> note = service.findAllNote();
+        for (Nota nota : note) {
+            service.deleteNota(nota.getID().getObject1(), nota.getID().getObject2());
+        }
     }
 
-    @After
-    public void afterAll() {
+    @AfterClass
+    public static void afterAll() {
         // delete all students
         Iterable<Student> students = service.findAllStudents();
         List<Student> studentList = new ArrayList<>();
@@ -64,6 +66,14 @@ public class AppTest
         teme.forEach(temaList::add);
         for (Tema tema : temaList) {
             service.deleteTema(tema.getID());
+        }
+
+        // delete all grades
+        Iterable<Nota> note = service.findAllNote();
+        List<Nota> notaList = new ArrayList<>();
+        note.forEach(notaList::add);
+        for (Nota nota : notaList) {
+            service.deleteNota(nota.getID().getObject1(), nota.getID().getObject2());
         }
     }
 
@@ -193,5 +203,36 @@ public class AppTest
         int result = service.saveTema("5", "Tema5", 2, 17);
 
         assert result == 0;
+    }
+
+    // integration testing
+    @Test
+    public void testAddStudentIntegration() {
+        int result = service.saveStudent("99", "Olivia", 312);
+
+        assert result == 0;
+    }
+
+    @Test
+    public void testAddAssignmentIntegration() {
+        int result = service.saveTema("99", "Tema99", 8, 5);
+
+        assert result == 1;
+    }
+
+    @Test
+    public void testAddGradeIntegration() {
+        int result = service.saveNota("99", "99", 10, 6, "Good job!");
+
+        assert result == 1;
+    }
+
+    @Test
+    public void testAddStudentAssignmentGradeIntegration() {
+        int resultS = service.saveStudent("100", "Alex", 936);
+        int resultT = service.saveTema("100", "Tema1", 5, 3);
+        int resultN = service.saveNota("100", "100", 10, 5, "Good job!");
+
+        assert resultS == 0 && resultT == 1 && resultN == 1;
     }
 }
